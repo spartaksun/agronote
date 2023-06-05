@@ -1,0 +1,62 @@
+{% form_theme form 'form/error_class_form.html.twig' %}
+
+{{ form_start(form) }}
+
+<label>
+    Search
+    <input
+            name="{{ field_name(form.search) }}"
+            value="{{ field_value(form.search) }}"
+            placeholder="{{ field_label(form.search) }}"
+            class="form-control"
+    />
+</label>
+<div class="form-error">
+    {{ form_errors(form.search) }}
+</div>
+<div class="form-group">
+    <label>
+        Sort tasks
+        <select name="{{ field_name(form.sortBy) }}" class="form-control">
+            <option value="">Choose sort</option>
+
+            {% for label, value in field_choices(form.sortBy) %}
+                <option value="{{ value }}" {% if value == field_value(form.sortBy) %}selected="selected"{% endif %}>
+                    {{ label }}
+                </option>
+            {% endfor %}
+        </select>
+    </label>
+    <div class="form-error">
+        {{ form_errors(form.sortBy) }}
+    </div>
+</div>
+<div class="form-group">
+    <label>
+        Filter by status
+        <select name="{{ field_name(form.status) }}" class="form-control">
+            <option value="">Choose filter</option>
+
+            {% for label, value in field_choices(form.status) %}
+                <option value="{{ value }}" {% if value == field_value(form.status) %}selected="selected"{% endif %}>
+                    {{ label }}
+                </option>
+            {% endfor %}
+        </select>
+    </label>
+    <div class="form-error">
+        {{ form_errors(form.status) }}
+    </div>
+</div>
+
+<div class="form-group">
+    <p style="margin-top: 20px">
+        <button class="btn btn-outline-primary">{{ button_label|default('Search') }}</button>
+    </p>
+</div>
+
+
+{{ form_errors(form) }}
+{{ form_end(form) }}
+
+

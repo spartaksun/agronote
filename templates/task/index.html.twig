@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tasks{% endblock %}
+
+{% block body %}
+    <h1>Tasks</h1>
+    <p>
+        <a href="{{ path('app_task_new') }}">Create a new task</a>
+    </p>
+    {% include 'form/search_task_form.html.twig' with { 'form': form } %}
+    {{ knp_pagination_render(pagination) }}
+    {% for task in pagination %}
+        <div class="card" style="cursor: pointer"
+             onclick="window.location.href='{{ path('app_task_edit', {'id': task.id}) }}'">
+            <div class="card-header" style="display: flex; justify-content: space-between;">
+                <span>Due date: {{ task.dueDate ? task.dueDate|date('Y-m-d') : '' }}</span>
+                {% if is_granted("ROLE_ADMIN") %}
+                    <span class="my-2 my-lg-0">Created by: {{ task.createdBy.username }}</span>
+                {% endif %}
+                <span>{{ task.status }}</span>
+            </div>
+            <div class="card-body">
+                <div>
+                    <h5>{{ task.title }}</h5>
+                    <p>{{ task.description }}</p>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <div>no tasks found</div>
+    {% endfor %}
+
+
+
+
+{% endblock %}

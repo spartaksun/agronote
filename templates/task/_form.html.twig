@@ -1,0 +1,9 @@
+{% form_theme form 'form/error_class_form.html.twig' %}
+
+{{ form_start(form) }}
+    {{ form_errors(form) }}
+    {{ form_widget(form) }}
+<p style="margin-top: 20px">
+    <button class="btn btn-outline-primary">{{ button_label|default('Save') }}</button>
+</p>
+{{ form_end(form) }}
