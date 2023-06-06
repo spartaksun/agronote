@@ -8,7 +8,7 @@ git clone https://github.com/spartaksun/agronote.git
 ```
 Install dependencies
 ```shell
-cd arronote
+cd agronote
 composer install
 ```
 Warmup a cache
@@ -37,7 +37,7 @@ php -S 127.0.0.1:8000 public/index.php
 
 Open http://127.0.0.1:8000 and Register new user.
 
-Create some test tasks
+Create some tasks for testing
 ```shell
 bin/console generate:test-data
 ```

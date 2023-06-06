@@ -106,4 +106,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         return strval($this->username);
     }
+
+    public function getTasks(): Collection
+    {
+        return $this->tasks;
+    }
+
+    public function setTasks(Collection $tasks): void
+    {
+        $this->tasks = $tasks;
+    }
 }
